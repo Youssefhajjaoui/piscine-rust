@@ -1,5 +1,5 @@
 [package]
-name = "speed-transformation"
+name = "speed_transformation"
 version = "0.1.0"
 edition = "2021"
 
