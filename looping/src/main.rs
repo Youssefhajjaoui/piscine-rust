@@ -1,7 +1,7 @@
 use std::io;
 
 fn main(){
-    let mut conter  = 0;
+    let mut conter  = 1;
     println!("I am the beginning of the end, and the end of time and space. I am essential to creation, and I surround every place. What am I?");
     loop{
         let mut input : String =String::from("");
