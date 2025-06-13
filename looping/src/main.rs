@@ -10,7 +10,7 @@ fn main(){
             Ok(val) => val,
             Err(err) => panic!("{}",err),
         };
-        if input.trim() == "e"{
+        if input.trim() == "The letter e"{
             println!("Number of trials: {}",conter);
             break;
         }else{
