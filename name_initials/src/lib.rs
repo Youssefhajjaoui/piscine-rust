@@ -6,7 +6,7 @@ pub fn initials(names: Vec<&str>) -> Vec<String> {
         if parts.len() >= 2 {
             let first = parts[0].chars().next().unwrap_or('_');
             let second = parts[1].chars().next().unwrap_or('_');
-            res.push(format!("{} {}", first, second));
+            res.push(format!("{}. {}.", first, second));
         } else {
             res.push(String::from("_ _"));
         }
