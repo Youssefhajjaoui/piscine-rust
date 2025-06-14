@@ -4,7 +4,6 @@ pub fn is_empty(v: &str) -> bool {
 
 pub fn is_ascii(v: &str) -> bool {
     for chare in v.chars(){
-        println!("{}",chare as u8);
         if (chare as u8) < 32 || (chare as u8) > 127 {
             return false
         }
