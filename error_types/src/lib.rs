@@ -5,6 +5,8 @@ pub struct FormError {
     pub err: &'static str,
 }
 
+pub type Utc = chrono::Utc;
+
 impl FormError {
     pub fn new(field_name: &'static str, field_value: String, err: &'static str) -> Self {
         let now = Utc::now();
