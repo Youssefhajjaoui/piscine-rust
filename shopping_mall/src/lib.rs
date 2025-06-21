@@ -11,9 +11,9 @@ pub fn biggest_store(mall: &Mall) -> (&String, &Store) {
         .unwrap()
 }
 
-pub fn highest_paid_employee(mall: &Mall) -> Vec<Employee> {
+pub fn highest_paid_employee(mall: &Mall) -> Vec<(String, Employee)> {
     let mut maxsalair: f64 = 0.;
-    let mut vec: Vec<Employee> = vec![];
+    let mut vec: Vec<(String, Employee)> = vec![];
     for (floor_name, floor) in &mall.floors {
         for (store_name, store) in &floor.stores {
             for (employe) in &store.employees {
@@ -28,7 +28,7 @@ pub fn highest_paid_employee(mall: &Mall) -> Vec<Employee> {
         for (store_name, store) in &floor.stores {
             for (employe) in &store.employees {
                 if employe.1.salary == maxsalair {
-                    vec.push(*employe.1);
+                    vec.push((employe.0.clone(), *employe.1));
                 }
             }
         }
@@ -80,4 +80,3 @@ pub fn cut_or_raise(mall: &mut Mall) {
         }
     }
 }
-
