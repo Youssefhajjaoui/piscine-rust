@@ -11,30 +11,25 @@ pub fn biggest_store(mall: &Mall) -> (&String, &Store) {
         .unwrap()
 }
 
-pub fn highest_paid_employee(mall: &Mall) -> Vec<(String, Employee)> {
-    let mut maxsalair: f64 = 0.;
-    let mut vec: Vec<(String, Employee)> = vec![];
-    for (floor_name, floor) in &mall.floors {
-        for (store_name, store) in &floor.stores {
-            for (employe) in &store.employees {
-                if employe.1.salary > maxsalair {
-                    maxsalair = employe.1.salary
+pub fn highest_paid_employee(mall: &Mall) -> Vec<(&String, &Employee)> {
+    let mut max_salary = 0.0;
+    let mut result = Vec::new();
+
+    for floor in mall.floors.values() {
+        for store in floor.stores.values() {
+            for (name, employee) in &store.employees {
+                if employee.salary > max_salary {
+                    max_salary = employee.salary;
+                    result.clear();
+                    result.push((name, employee));
+                } else if (employee.salary - max_salary).abs() < f64::EPSILON {
+                    result.push((name, employee));
                 }
             }
         }
     }
 
-    for (floor_name, floor) in &mall.floors {
-        for (store_name, store) in &floor.stores {
-            for (employe) in &store.employees {
-                if employe.1.salary == maxsalair {
-                    vec.push((employe.0.clone(), *employe.1));
-                }
-            }
-        }
-    }
-
-    vec
+    result
 }
 
 pub fn nbr_of_employees(mall: &Mall) -> usize {
@@ -75,6 +70,8 @@ pub fn cut_or_raise(mall: &mut Mall) {
                 let hours_worked = employee.working_hours.1 - employee.working_hours.0;
                 if hours_worked >= 10 {
                     employee.raise(employee.salary * 0.1);
+                } else {
+                    employee.raise(-(employee.salary * 0.1));
                 }
             }
         }

@@ -1,4 +1,5 @@
 use shopping_mall::*;
+use std::collections::HashMap;
 
 fn main() {
     let mut mall = Mall::new(
