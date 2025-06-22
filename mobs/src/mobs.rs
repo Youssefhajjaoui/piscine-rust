@@ -43,7 +43,6 @@ impl Mob {
     }
     pub fn steal(&mut self, target: &mut Mob, amount: u64) {
         let steal_amount = amount.min(target.wealth);
-
         target.wealth -= steal_amount;
         self.wealth += steal_amount;
     }
