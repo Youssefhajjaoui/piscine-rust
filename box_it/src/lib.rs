@@ -3,7 +3,6 @@ pub fn transform_and_save_on_heap(s: String) -> Box<Vec<u32>> {
     let values: Vec<&str> = s.split(" ").collect();
     for chare in values {
         if chare.ends_with("k") {
-            // println!("{:#?}", chare.strip_suffix("k").unwrap());
             res.push(
                 (chare
                     .strip_suffix("k")
@@ -19,9 +18,5 @@ pub fn transform_and_save_on_heap(s: String) -> Box<Vec<u32>> {
     res
 }
 pub fn take_value_ownership(a: Box<Vec<u32>>) -> Vec<u32> {
-    let mut res: Vec<u32> = vec![];
-    for int in *a {
-        res.push(int);
-    }
-    res
+    *a
 }
