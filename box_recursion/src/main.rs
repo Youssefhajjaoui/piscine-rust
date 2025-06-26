@@ -8,12 +8,12 @@ fn main() {
     list.add_worker(String::from("Normal Worker"), String::from("Alice"));
     println!("{:#?}", list);
 
-    // println!("{:?}", list.last_worker());
+    println!("{:?}", list.last_worker());
 
     list.remove_worker();
     list.remove_worker();
     list.remove_worker();
     println!("{:?}", list);
-    // list.remove_worker();
+    list.remove_worker();
     println!("{:?}", list);
 }

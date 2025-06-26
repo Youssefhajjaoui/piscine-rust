@@ -3,7 +3,7 @@ pub struct WorkEnvironment {
     pub grade: Link,
 }
 
-pub type Link = Box<Option<Worker>>;
+pub type Link = Option<Box<Worker>>;
 
 #[derive(Debug, PartialEq, Clone)]
 pub struct Worker {
@@ -14,19 +14,17 @@ pub struct Worker {
 
 impl WorkEnvironment {
     pub fn new() -> WorkEnvironment {
-        Self {
-            grade: Box::new(None),
-        }
+        Self { grade: None }
     }
     pub fn add_worker(&mut self, role: String, name: String) {
-        if *self.grade == None {
-            self.grade = Box::new(Some(Worker {
+        if self.grade == None {
+            self.grade = Some(Box::new(Worker {
                 role,
                 name,
-                next: Box::new(None),
+                next: None,
             }))
         } else {
-            self.grade = Box::new(Some(Worker {
+            self.grade = Some(Box::new(Worker {
                 role,
                 name,
                 next: self.grade.clone(),
@@ -40,7 +38,6 @@ impl WorkEnvironment {
     }
     pub fn last_worker(&self) -> Option<(String, String)> {
         let last = self.grade.clone().unwrap();
-        // self.grade = self.grade.clone().unwrap().next;
         Some((last.name, last.role))
     }
 }
