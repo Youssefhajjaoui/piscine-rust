@@ -27,18 +27,16 @@ impl GameSession {
         }
     }
     pub fn update_score(&mut self, user_name: String) {
-        if self.nb_games == 0 {
+        if self.p1.1 * 2 > self.nb_games || self.p2.1 * 2 > self.nb_games {
             return;
-        };
-        // println!("{:?}", self.nb_games);
-        // println!("{:?}", self.p2.clone());
+        }
 
         if self.p1.0 == user_name {
             self.p1.1 += 1;
-            self.nb_games -= 1;
+            // self.nb_games += 1;
         } else if self.p2.0 == user_name {
             self.p2.1 += 1;
-            self.nb_games -= 1;
+            // self.nb_games += 1;
         }
     }
     pub fn delete(self) -> String {
