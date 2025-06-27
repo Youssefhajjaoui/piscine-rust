@@ -1,5 +1,7 @@
 use std::{collections::HashMap, rc::Rc};
 
+use crate::Worker;
+
 pub trait Logger {
     fn warning(&self, msg: &str);
     fn info(&self, msg: &str);
@@ -20,13 +22,28 @@ impl<'a> Tracker<'a> {
             max: nbr,
         }
     }
-    pub fn set_value(&mut self, value: &Rc<u64>) {
-        if self.value + **value < self.max {
-            self.value += **value;
-        }
-    }
-    pub fn peek(&self) {
+
+    pub fn set_value<T>(&self, worker: &Rc<T>) {
+    let count = Rc::strong_count(worker) as u64;
+    let percent = count * 100 / self.max;
+
+    if percent >= 100 {
         self.logger
-            .info("Info: you are using up to X% of your quota");
+            .error("Error: you are over your quota!");
+    } else if percent >= 70 {
+        self.logger
+            .warning(&format!(
+                "Warning: you have used up over {}% of your quota! Proceeds with precaution",
+                percent
+            ));
     }
+}
+
+    pub fn peek<T>(&self, worker: &Rc<T>) {
+    let count = Rc::strong_count(worker) as u64;
+    let percent = count * 100 / self.max;
+    self.logger
+        .info(&format!("Info: you are using up to {}% of your quota", percent));
+    }
+
 }
