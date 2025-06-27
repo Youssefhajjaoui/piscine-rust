@@ -26,6 +26,7 @@ impl<'a> Tracker<'a> {
         }
     }
     pub fn peek(&self) {
-        self.logger.info("")
+        self.logger
+            .info("Info: you are using up to X% of your quota");
     }
 }
