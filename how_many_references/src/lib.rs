@@ -13,13 +13,7 @@ impl Node {
         self.ref_list.push(element);
     }
     pub fn rm_all_ref(&mut self, element: Rc<String>) {
-        let mut res: Vec<Rc<String>> = vec![];
-        for val in self.ref_list.iter() {
-            if !Rc::ptr_eq(val, &element) {
-                res.push(Rc::clone(&val));
-            }
-        }
-        self.ref_list = res;
+        self.ref_list.retain(|val| !Rc::ptr_eq(val, &element));
     }
 }
 

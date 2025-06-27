@@ -17,19 +17,19 @@ impl WorkEnvironment {
         Self { grade: None }
     }
     pub fn add_worker(&mut self, role: String, name: String) {
-        if self.grade == None {
-            self.grade = Some(Box::new(Worker {
-                role,
-                name,
-                next: None,
-            }))
-        } else {
-            self.grade = Some(Box::new(Worker {
-                role,
-                name,
-                next: self.grade.clone(),
-            }))
-        }
+        // if self.grade == None {
+        //     self.grade = Some(Box::new(Worker {
+        //         role,
+        //         name,
+        //         next: None,
+        //     }))
+        // } else {
+        self.grade = Some(Box::new(Worker {
+            role,
+            name,
+            next: self.grade.clone(),
+        }))
+        // }
     }
     pub fn remove_worker(&mut self) -> Option<String> {
         let last = self.grade.clone().unwrap();
