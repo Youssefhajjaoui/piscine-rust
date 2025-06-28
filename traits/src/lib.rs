@@ -13,10 +13,10 @@ impl Display for Player {
         writeln!(f, "{}", self.name);
         writeln!(
             f,
-            "Strength: {},Score: {},Money: {}",
+            "Strength: {}, Score: {}, Money: {}",
             self.strength, self.score, self.money
         );
-        write!(f, "{:?}", self.weapons);
+        write!(f, "Weapons: {:?}", self.weapons);
         Ok(())
     }
 }
@@ -48,7 +48,8 @@ impl Food for Fruit {
 
 impl Food for Meat {
     fn gives(&self) -> f64 {
-        let protein = self.weight_in_kg - self.fat_content;
-        protein * 9. + self.fat_content * 4.
+        let fat = self.weight_in_kg * self.fat_content;
+        let protein = (1. - self.fat_content) * self.weight_in_kg;
+        protein * 4. + fat * 9.
     }
 }
