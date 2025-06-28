@@ -1,7 +1,4 @@
-use std::{
-    cell::{Cell, RefCell},
-    thread,
-};
+use std::cell::{Cell, RefCell};
 
 #[derive(Debug, Default, Clone, Eq, PartialEq)]
 pub struct Workers {
@@ -36,6 +33,8 @@ impl Workers {
         }
     }
 }
+
+#[derive(Debug, Clone, Eq, PartialEq)]
 
 pub struct Thread<'a> {
     pub pid: usize,
