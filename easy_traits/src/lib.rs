@@ -13,8 +13,9 @@ pub trait AppendStr {
 
 impl AppendStr for StringValue {
     fn append_number(&mut self, nb_to_append: f64) -> Self {
+        self.value.push_str(&(nb_to_append).to_string());
         Self {
-            value: self.value.clone() + &(nb_to_append as u8 as char).to_string(),
+            value: self.value.clone(),
         }
     }
     fn append_str(&mut self, str_to_append: String) -> Self {
@@ -27,7 +28,7 @@ impl AppendStr for StringValue {
         self.value = self
             .value
             .chars()
-            .filter(|value| !value.is_ascii_punctuation())
+            .filter(|c| !matches!(c, '.' | ',' | '?' | '!'))
             .collect();
 
         Self {
