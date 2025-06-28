@@ -1,6 +1,5 @@
 use ref_cell::*;
 
-
 fn main() {
     // initialize the worker
     let logger = Worker::new(1);
