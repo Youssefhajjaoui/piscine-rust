@@ -12,7 +12,7 @@ pub enum Antigen {
 }
 
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Clone)]
-enum RhFactor {
+pub enum RhFactor {
     Positive,
     Negative,
 }
@@ -57,14 +57,14 @@ impl FromStr for BloodType {
         }
         // let (rh, ant) = (s[..0], s[0..]);
         let mut rh = String::from("");
-        rh = s[..1].to_string();
+        rh = s[s.len()-1..].to_string();
         let mut ant = String::from("");
-        ant = s[1..].to_string();
+        ant = s[..s.len()-1].to_string();
 
         // println!("{rh}             {ant}");
         Ok(BloodType {
-            antigen: Antigen::from_str(&rh).expect("no matches"),
-            rh_factor: RhFactor::from_str(&ant).expect("no matches"),
+            antigen: Antigen::from_str(&ant).expect("no matches"),
+            rh_factor: RhFactor::from_str(&rh).expect("no matches"),
         })
     }
 }
@@ -120,7 +120,7 @@ impl BloodType {
 
     pub fn recipients(&self) -> Vec<BloodType> {
         let mut res: Vec<Self> = vec![];
-        for typ in [Antigen::AB, Antigen::AB, Antigen::A, Antigen::B] {
+        for typ in [Antigen::AB, Antigen::O, Antigen::A, Antigen::B] {
             for rh in [RhFactor::Negative, RhFactor::Positive] {
                 let other = BloodType {
                     rh_factor: rh,
