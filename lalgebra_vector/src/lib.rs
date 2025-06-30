@@ -60,19 +60,19 @@ impl Scalar for u64 {
 pub struct Vector<T: Scalar>(pub Vec<T>);
 
 impl<T: Scalar> Add for Vector<T> {
-    type Output = Self;
+    type Output = Option<Self>;
 
     fn add(self, rhs: Self) -> Self::Output {
-        // if self.0.len() != rhs.0.len() {
-        //     return None;
-        // }
+        if self.0.len() != rhs.0.len() {
+            return None;
+        }
         let data = self
             .0
             .into_iter()
             .zip(rhs.0.into_iter())
             .map(|(a, b)| a + b)
             .collect();
-        Vector(data)
+        Some(Vector(data))
     }
 }
 
