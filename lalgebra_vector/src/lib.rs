@@ -56,7 +56,7 @@ impl Scalar for u64 {
         0
     }
 }
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Vector<T: Scalar>(pub Vec<T>);
 
 impl<T: Scalar> Add for Vector<T> {
