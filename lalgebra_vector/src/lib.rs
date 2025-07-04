@@ -16,16 +16,7 @@ impl Scalar for i64 {
         0
     }
 }
-// impl Scalar for f32 {
-//     fn zero() -> Self {
-//         0.
-//     }
-// }
-// impl Scalar for f64 {
-//     fn zero() -> Self {
-//         0.
-//     }
-// }
+
 impl Scalar for i8 {
     fn zero() -> Self {
         0

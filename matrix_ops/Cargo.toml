@@ -4,3 +4,6 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+lalgebra_scalar = {path = "../lalgebra_scalar"}
+lalgebra_vector = {path = "../lalgebra_vector"}
+matrix = {path = "../matrix"}

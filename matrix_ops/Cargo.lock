@@ -3,5 +3,22 @@
 version = 4
 
 [[package]]
+name = "lalgebra_scalar"
+version = "0.1.0"
+
+[[package]]
+name = "lalgebra_vector"
+version = "0.1.0"
+
+[[package]]
+name = "matrix"
+version = "0.1.0"
+
+[[package]]
 name = "matrix_ops"
 version = "0.1.0"
+dependencies = [
+ "lalgebra_scalar",
+ "lalgebra_vector",
+ "matrix",
+]
