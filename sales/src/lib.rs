@@ -62,6 +62,7 @@ impl Cart {
         }
 
         self.receipt = adjusted_prices.clone();
+        adjusted_prices.sort_by(|a, b| a.partial_cmp(b).unwrap());
         adjusted_prices
     }
 }
