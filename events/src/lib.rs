@@ -46,7 +46,7 @@ impl<'a> Event<'a> {
         match self {
             Event::Appointment(val) => Notification {
                 size: 100,
-                color: (255, 2, 22),
+                color: (200, 200, 3),
                 position: Position::Center,
                 content: (val).to_string(),
             },
